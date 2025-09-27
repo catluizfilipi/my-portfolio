@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meu Portfólio</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+  /* Adiciona o scroll suave via CSS */
+  html {
+    scroll-behavior: smooth;
+  }
+    
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #0f0f1a;
+    color: #e4e4e7;
+    overflow-x: hidden;
+  }
+
+  /* Fade in geral */
+  .fade-in {
+    animation: fadeIn 0.6s ease-in-out forwards;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Botões animados */
+  .btn {
+    transition: all 0.2s ease-in-out;
+    transform: scale(1);
+    position: relative;
+    overflow: hidden;
+  }
+  .btn:hover { transform: scale(1.05); }
+  .btn:active { transform: scale(0.95); }
+
+  /* Botão Hero pulse */
+  .btn-pulse {
+    animation: pulse 1.6s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(132, 204, 22, 0.7); } /* lime-500 rgba */
+     50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(132, 204, 22, 0.8); } /* lime-500 rgba */
+  }
+
+  /* Navbar hover com Underline animado */
+  nav a { 
+    transition: color 0.25s ease; 
+    position: relative;
+    display: inline-block;
+  }
+  nav a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: rgba(132, 204, 22, 0.7); /* purple-500 */
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  nav a:hover { color: rgba(132, 204, 22, 0.8) !important; }
+  nav a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  /* Popup fade + zoom */
+  .popup {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.25s ease;
+  }
+  .popup.show {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Banner zoom */
+  #bannerExpandido { transition: transform 0.3s ease; }
+
+  /* Fundo estrelas */
+  #stars {
+    position: fixed;
+    top:0; left:0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: twinkle 3s infinite alternate;
+  }
+  @keyframes twinkle { 0% {opacity:0.3;} 100% {opacity:1;} }
+
+  /* Carrossel de Avaliações - Animation */
+  .testimonial-slider {
+    display: flex;
+    animation: slide 30s linear infinite; /* Velocidade do slide */
+    width: max-content; /* Permite que os itens fiquem lado a lado */
+  }
+
+  /* Duplicar o conteúdo para o loop infinito visualmente suave */
+  .testimonial-slide-track {
+    display: flex;
+    width: 200%; /* O dobro para o loop */
+  }
+
+  /* A keyframe animation para o deslize */
+  @keyframes slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Move a largura total da primeira metade */
+  }
+</style>
+</head>
+<body>
+
+<div id="stars"></div>
+
+<header class="bg-[#181826] shadow-md sticky top-0 z-50 fade-in">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold tracking-wide text-lime-400">Portfólio</h1>
+    <nav class="space-x-6 font-semibold text-gray-300">
+      <a href="#sobre">Sobre</a>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#avaliacoes">Avaliações</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<section class="text-center py-20 bg-gradient-to-r from-emerald-700 via-emerald-800 to-green-900 text-white fade-in">
+  <h2 class="text-4xl font-bold mb-4">Olá! Sou Luiz e faço banners 🎨!</h2>
+  <p class="text-lg mb-6">Confira abaixo meu trabalho e entre em contato para encomendar o seu!</p>
+  <a href="#contato" class="btn btn-pulse px-6 py-3 bg-lime-600 text-black font-semibold rounded-full shadow hover:bg-lime-700">Peça um banner</a> </section>
+</section>
+
+<section id="sobre" class="max-w-5xl mx-auto px-6 py-16 fade-in">
+  <h3 class="text-2xl font-bold mb-8 text-center text-lime-300">📋 Sobre Mim</h3>
+  <div class="bg-[#181826] rounded-2xl shadow-xl p-8 flex flex-col md:flex-row items-center gap-8">
+    <img src="https://cdn.discordapp.com/avatars/1398370514350768158/39669581c8f1f69c43a11e41e7ab4663.webp?size=512" alt="Minha Foto" class="rounded-xl shadow-md w-full md:w-1/2 lg:w-1/3">
+    <div>
+      <p class="text-gray-300 leading-relaxed mb-4">
+        Sou um designer digital apaixonado por criar artes que unem <span class="font-semibold text-lime-400">criatividade</span> e <span class="font-semibold text-lime-400">profissionalismo</span>.
+      </p>
+      <ul class="list-disc list-inside text-gray-400 space-y-2">
+        <li><span class="font-semibold text-lime-300">Experiência:</span> +2 anos</li>
+        <li><span class="font-semibold text-lime-300">Ferramentas:</span> Photoshop</li>
+        <li><span class="font-semibold text-lime-300">Estilo:</span> Alto impacto visual criados com cores saturadas, degradês dinâmicos e tipografia "bubble letter" em camadas. Composição moderna, focada em temáticas otaku.</li>
+        <li><span class="font-semibold text-lime-300">Objetivo:</span> Transformar sua ideia em um banner bonito e chamativo.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio" class="bg-[#131320] py-16 fade-in">
+  <div class="max-w-6xl mx-auto px-6">
+    <h3 class="text-2xl font-bold mb-10 text-center text-lime-400">Trabalhos Recentes</h3>
+    <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+
+      <div class="bg-[#181826] rounded-xl shadow hover:shadow-lg overflow-hidden cursor-pointer btn" onclick="abrirBanner('https://cdn.discordapp.com/attachments/1398371059236995178/1421623101472374854/banner_regras_lyn_marca_dagua.png?ex=68d9b52f&is=68d863af&hm=ffc3b6f8793b76603394a5c8d84d832b32d4bf3a9795e49af5b8eef2267ef017&')">
+        <img src="https://cdn.discordapp.com/attachments/1398371059236995178/1421623101472374854/banner_regras_lyn_marca_dagua.png?ex=68d9b52f&is=68d863af&hm=ffc3b6f8793b76603394a5c8d84d832b32d4bf3a9795e49af5b8eef2267ef017&" alt="Banner 1" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105">
+        <div class="p-4">
+          <p class="font-semibold text-gray-200">Banner 1</p>
+        </div>
+      </div>
+
+      <div class="bg-[#181826] rounded-xl shadow hover:shadow-lg overflow-hidden cursor-pointer btn" onclick="abrirBanner('https://cdn.discordapp.com/attachments/1398371059236995178/1421623102080684102/banner_loja.png?ex=68d9b530&is=68d863b0&hm=f8ff03327287ffb262af1999044f7c33c085d886372db7690e1c083001086693&')">
+        <img src="https://cdn.discordapp.com/attachments/1398371059236995178/1421623102080684102/banner_loja.png?ex=68d9b530&is=68d863b0&hm=f8ff03327287ffb262af1999044f7c33c085d886372db7690e1c083001086693&" alt="Banner 2" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105">
+        <div class="p-4">
+          <p class="font-semibold text-gray-200">Banner 2</p>
+        </div>
+      </div>
+
+      <div class="bg-[#181826] rounded-xl shadow hover:shadow-lg overflow-hidden cursor-pointer btn" onclick="abrirBanner('https://cdn.discordapp.com/attachments/1398371059236995178/1421623102642851870/banner_boas_vindas_tokito.png?ex=68d9b530&is=68d863b0&hm=01d6057a4c08b523bf8f4a1969ac941c0511b2b2afcf9bd13cf82281f35c9ca6&')">
+        <img src="https://cdn.discordapp.com/attachments/1398371059236995178/1421623102642851870/banner_boas_vindas_tokito.png?ex=68d9b530&is=68d863b0&hm=01d6057a4c08b523bf8f4a1969ac941c0511b2b2afcf9bd13cf82281f35c9ca6&" alt="Banner 3" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105">
+        <div class="p-4">
+          <p class="font-semibold text-gray-200">Banner 3</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="avaliacoes" class="py-16 fade-in">
+  <div class="max-w-6xl mx-auto px-6">
+    <h3 class="text-2xl font-bold mb-10 text-center text-lime-400">O que dizem os clientes (4.8/5.0 ⭐)</h3>
+    
+    <div class="overflow-hidden relative py-4">
+      <div class="testimonial-slide-track">
+        <div class="testimonial-slider" id="testimonialSlider1"></div>
+        <div class="testimonial-slider" id="testimonialSlider2"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section id="contato" class="max-w-4xl mx-auto px-6 py-16 fade-in">
+  <h3 class="text-2xl font-bold mb-4 text-lime-400">Contato</h3>
+  <p class="mb-6 text-gray-300">Gostou do meu trabalho? Entre em contato para pedir seu banner!</p>
+  <button onclick="abrirPopup()" class="btn px-6 py-3 bg-lime-600 text-white rounded-lg shadow hover:bg-lime-700">Encomende já!</button>
+</section>
+
+<div id="popup" class="fixed inset-0 bg-black bg-opacity-60 hidden flex items-center justify-center z-50">
+  <div class="popup bg-[#181826] rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
+    <h4 class="text-2xl font-bold mb-2 text-lime-400">Me chame no Discord 💬</h4>
+    <p class="text-gray-300 mb-2">Meu Discord: <span class="font-semibold text-lime-300">@luiz.comissions</span></p>
+    <p class="text-lime-400 font-semibold mb-6">Banners por apenas R$5,00!</p>
+
+    <div class="text-left mb-6">
+      <h5 class="text-lg font-bold mb-2 text-lime-400">O que eu faço ✅</h5>
+      <ul class="list-disc list-inside text-gray-300 mb-4">
+        <li>Banners criativos e personalizados</li>
+        <li>Design simples e organizado</li>
+        <li>Artes para redes sociais e jogos</li>
+      </ul>
+      <h5 class="text-lg font-bold mb-2 text-lime-400">O que eu não faço ❌</h5>
+      <ul class="list-disc list-inside text-gray-300">
+        <li>NSFW</li>
+        <li>Gore</li>
+        <li>Conteúdo ofensivo ou ilegal</li>
+      </ul>
+    </div>
+
+    <button onclick="fecharPopup()" class="btn px-4 py-2 bg-lime-600 text-white rounded-lg hover:bg-lime-700">Fechar</button>
+  </div>
+</div>
+
+<div id="popupBanner" class="fixed inset-0 bg-black bg-opacity-80 hidden flex flex-col items-center justify-center z-50">
+  <div class="popup relative">
+    <img id="bannerExpandido" src="" alt="Banner Expandido" class="max-h-[80vh] max-w-[90vw] rounded-xl shadow-lg">
+    <div class="absolute top-2 right-2 flex space-x-2">
+      <button onclick="zoomIn()" class="btn px-3 py-1 bg-lime-600 text-white rounded shadow hover:bg-lime-700">+</button>
+      <button onclick="zoomOut()" class="btn px-3 py-1 bg-lime-600 text-white rounded shadow hover:bg-lime-700">-</button>
+      <button onclick="fecharBanner()" class="btn px-3 py-1 bg-red-600 text-white rounded shadow">✕</button>
+    </div>
+  </div>
+</div>
+
+<footer class="bg-[#181826] border-t border-gray-700 mt-10">
+  <div class="max-w-6xl mx-auto px-6 py-6 text-center text-gray-500">
+    © 2025 - Luiz Filipi
+  </div>
+</footer>
+
+<script>
+  // Dados das avaliações para o carrossel
+  const testimonials = [
+    { name: "Maria", rating: 5, feedback: "Trabalho excelente e super rápido! O banner ficou incrível, super recomendo." },
+    { name: "José", rating: 4, feedback: "Muito bom, o designer captou exatamente o que eu queria. Atendimento nota 10." },
+    { name: "João", rating: 5, feedback: "Melhor R$5,00 investido! A arte superou minhas expectativas e o Luiz é muito atencioso." },
+    { name: "Ana", rating: 5, feedback: "Design moderno e profissional. Fiquei muito satisfeito com o resultado final do meu banner." },
+    { name: "Pedro", rating: 4, feedback: "Um trabalho de qualidade, apenas demorou um pouco mais que o esperado, mas valeu a pena." },
+  ];
+
+  // Função para criar o HTML das estrelas
+  function createStars(rating) {
+    let starsHtml = '';
+    for (let i = 1; i <= 5; i++) {
+      starsHtml += `<i class="fa-solid fa-star ${i <= rating ? 'text-yellow-400' : 'text-gray-600'}"></i>`;
+    }
+    return starsHtml;
+  }
+
+  // Função para criar o carrossel de avaliações
+  function renderTestimonials(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    testimonials.forEach(testimonial => {
+      const card = document.createElement('div');
+      card.className = 'bg-[#181826] p-6 rounded-xl shadow-lg m-3 min-w-[300px] md:min-w-[350px] flex-shrink-0';
+      card.innerHTML = `
+        <div class="flex justify-between items-center mb-3">
+          <p class="font-semibold text-lime-300">${testimonial.name}</p>
+          <div class="text-sm">${createStars(testimonial.rating)}</div>
+        </div>
+        <p class="text-gray-300 italic">"${testimonial.feedback}"</p>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  // Renderiza e duplica os testemunhos para o loop infinito
+  renderTestimonials('testimonialSlider1');
+  renderTestimonials('testimonialSlider2');
+
+  // Popups com fade + zoom
+  function abrirPopup() { 
+    const popup = document.getElementById('popup');
+    popup.classList.remove('hidden');
+    // Força a exibição antes de adicionar a classe de animação
+    requestAnimationFrame(()=>popup.firstElementChild.classList.add('show'));
+  }
+  function fecharPopup() {
+    const popup = document.getElementById('popup');
+    popup.firstElementChild.classList.remove('show');
+    setTimeout(()=>popup.classList.add('hidden'), 250);
+  }
+  function abrirBanner(src) {
+    const banner = document.getElementById('bannerExpandido');
+    banner.src = src;
+    document.getElementById('popupBanner').classList.remove('hidden');
+    requestAnimationFrame(()=>banner.parentElement.classList.add('show'));
+  }
+  function fecharBanner() {
+    const banner = document.getElementById('bannerExpandido');
+    banner.parentElement.classList.remove('show');
+    setTimeout(()=>document.getElementById('popupBanner').classList.add('hidden'), 250);
+  }
+  let zoom = 1;
+  function zoomIn() { zoom += 0.2; document.getElementById('bannerExpandido').style.transform = `scale(${zoom})`; }
+  function zoomOut() { if(zoom>0.4) zoom-=0.2; document.getElementById('bannerExpandido').style.transform = `scale(${zoom})`; }
+
+  // Fundo estrelas
+  const starsContainer = document.getElementById('stars');
+  for(let i=0;i<100;i++){
+    const star = document.createElement('div');
+    star.className='star';
+    const size = Math.random()*2+1;
+    star.style.width = star.style.height = `${size}px`;
+    star.style.top = `${Math.random()*100}vh`;
+    star.style.left = `${Math.random()*100}vw`;
+    star.style.animationDuration = `${Math.random()*3+2}s`;
+    starsContainer.appendChild(star);
+  }
+</script>
+</body>
+</html>
